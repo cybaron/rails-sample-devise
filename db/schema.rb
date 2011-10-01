@@ -15,7 +15,9 @@ ActiveRecord::Schema.define(:version => 20111001033630) do
 
   create_table "users", :force => true do |t|
     t.integer  "uid"
+    t.string   "provider"
     t.string   "screen_name"
+    t.string   "email"
     t.string   "access_token"
     t.string   "access_secret"
     t.integer  "sign_in_count",      :default => 0
@@ -28,6 +30,5 @@ ActiveRecord::Schema.define(:version => 20111001033630) do
   end
 
   add_index "users", ["screen_name"], :name => "index_users_on_screen_name", :unique => true
-  add_index "users", ["uid"], :name => "index_users_on_uid", :unique => true
 
 end

@@ -2,7 +2,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def self.up
     create_table(:users) do |t|
       t.integer :uid
+      t.string :provider
       t.string :screen_name
+      t.string :email
       t.string :access_token
       t.string :access_secret
       t.trackable
@@ -17,8 +19,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.token_authenticatable
     end
 
-    add_index :users, :uid,                 :unique => true
-    add_index :users, :screen_name,         :unique => true
+    add_index :users, :screen_name,            :unique => true
+    # add_index :users, :uid,                  :unique => true
     # add_index :users, :email,                :unique => true
     # add_index :users, :reset_password_token, :unique => true
     # add_index :users, :confirmation_token,   :unique => true
