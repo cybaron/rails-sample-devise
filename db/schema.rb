@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20111001033630) do
 
   create_table "users", :force => true do |t|
-    t.integer  "uid"
+    t.string   "uid"
     t.string   "provider"
     t.string   "screen_name"
     t.string   "email"
@@ -28,7 +28,5 @@ ActiveRecord::Schema.define(:version => 20111001033630) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "users", ["screen_name"], :name => "index_users_on_screen_name", :unique => true
 
 end

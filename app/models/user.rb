@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
       user
     else
       User.create!({
-                    :uid => access_token['uid'].to_i,
+                    :uid => access_token['uid'],
                     :provider => access_token['provider'],
                     :screen_name => data['screen_name'],
                     :email => data['email'],
