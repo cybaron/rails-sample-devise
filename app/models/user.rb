@@ -4,11 +4,11 @@ class User < ActiveRecord::Base
   def self.find_for_user_oauth(access_token, signed_in_resource=nil)
     data = access_token['extra']['user_hash']
 
-    if user = User.find_by_provider_and_uid(access_token['provider'], access_token['uid'].to_i)
+    if user = User.find_by_provider_and_uid(access_token['provider'], access_token['uid'])
       user
     else
       User.create!({
-                    :uid => access_token['uid'].to_i,
+                    :uid => access_token['uid'],
                     :provider => access_token['provider'],
                     :screen_name => data['screen_name'],
                     :email => data['email'],
