@@ -7,13 +7,20 @@ class User < ActiveRecord::Base
     if user = User.find_by_provider_and_uid(access_token['provider'], access_token['uid'])
       user
     else
+      if data['screen_name']
+        # twitter
+        name = data['screen_name']
+      else
+        # facebook
+        name = data['name']
+      end
       User.create!({
                     :uid => access_token['uid'],
                     :provider => access_token['provider'],
-                    :screen_name => data['screen_name'],
-                    :email => data['email'],
-                    :access_token => access_token['credentials']['token'],
-                    :access_secret => access_token['credentials']['secret']
+                    :screen_name => name,
+                    :email => data['email'] || "",
+                    :access_token => access_token['credentials']['token'] || "",
+                    :access_secret => access_token['credentials']['secret'] || ""
       })
     end
   end
