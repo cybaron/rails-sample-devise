@@ -12,8 +12,9 @@
     |
     <%= link_to "Sign out", destroy_user_session_path  %>
   <% else %>
-    <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+    Sign in with
+    <%= link_to(image_tag("social-icons/twitter_32.png", :alt => "Sign in with Twitter"), user_omniauth_authorize_path(:twitter) ) %>
+    <%= link_to(image_tag("social-icons/facebook_32.png", :alt => "Sign in with Facebook"), user_omniauth_authorize_path(:facebook) ) %>
   <% end %>  
   <p class="notice"><%= notice %></p> 
   <p class="alert"><%= alert %></p> 
