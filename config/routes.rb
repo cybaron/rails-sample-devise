@@ -1,4 +1,6 @@
 SampleTodo::Application.routes.draw do
+  resources :todos
+
   get "home/index"
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
