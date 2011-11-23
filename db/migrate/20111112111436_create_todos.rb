@@ -2,7 +2,7 @@ class CreateTodos < ActiveRecord::Migration
   def self.up
     create_table :todos do |t|
       t.string :title
-      t.boolean :done
+      t.boolean :done, :null => false, :default => false
       t.datetime :due
       t.integer :user_id
 

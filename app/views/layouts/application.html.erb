@@ -8,7 +8,7 @@
 </head>
 <body>
   <% if user_signed_in?  %>
-    Hi! <%= current_user.screen_name %>
+    Hi! <%= current_user.screen_name %>@<%= current_user.provider %>
     |
     <%= link_to "Sign out", destroy_user_session_path  %>
   <% else %>

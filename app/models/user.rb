@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   devise :trackable, :omniauthable
 
+  has_many :todo
+
   def self.find_for_user_oauth(access_token, signed_in_resource=nil)
     data = access_token['extra']['user_hash']
 

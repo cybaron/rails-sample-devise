@@ -1,5 +1,9 @@
 SampleTodo::Application.routes.draw do
-  resources :todos
+  resources :todos, :only => [:index, :create, :show, :edit, :new] do
+    put :finish, :on => :member
+    put :unfinish, :on => :member
+    get :done, :on => :collection
+  end
 
   get "home/index"
 

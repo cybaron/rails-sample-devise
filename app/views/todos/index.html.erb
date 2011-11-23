@@ -8,6 +8,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @todos.each do |todo| %>
@@ -15,6 +16,7 @@
     <td><%= todo.title %></td>
     <td><%= todo.done %></td>
     <td><%= todo.due %></td>
+    <td><%= link_to 'finish!', finish_todo_path(todo), :method => :put %></td>
     <td><%= link_to 'Show', todo %></td>
     <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
     <td><%= link_to 'Destroy', todo, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -1,8 +1,21 @@
 class TodosController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /todos
   # GET /todos.xml
   def index
-    @todos = Todo.all
+    #@todos = Todo.where(:done => false).order("due")
+    @todos = current_user.todo.where(:done => false).order("due")
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @todos }
+    end
+  end
+
+  # 完了したtodo list
+  def done
+    @todos = Todo.where(:done => true).order("due")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +54,7 @@ class TodosController < ApplicationController
   # POST /todos.xml
   def create
     @todo = Todo.new(params[:todo])
+    @todo.user = current_user
 
     respond_to do |format|
       if @todo.save
@@ -79,5 +93,11 @@ class TodosController < ApplicationController
       format.html { redirect_to(todos_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def finish
+    @todo = Todo.find(params[:id])
+    @todo.update_attribute(:done,true)
+    redirect_to :back
   end
 end
